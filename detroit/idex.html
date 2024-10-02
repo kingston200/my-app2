@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detroit Lions 2024-25 Season</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 100%;
+        }
+        h1 {
+            color: #005a8b;
+            text-align: center;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #005a8b;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        .win {
+            color: green;
+            font-weight: bold;
+        }
+        .loss {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Detroit Lions 2024-25 Season</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Week</th>
+                    <th>Date</th>
+                    <th>Opponent</th>
+                    <th>Result</th>
+                </tr>
+            </thead>
+            <tbody id="seasonResults">
+                <!-- Rows will be dynamically added by JavaScript -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        const games = [
+            { week: 1, date: 'September 8, 2024', opponent: 'Chicago Bears', result: 'Win' },
+            { week: 2, date: 'September 15, 2024', opponent: 'Green Bay Packers', result: 'Loss' },
+            { week: 3, date: 'September 22, 2024', opponent: 'Minnesota Vikings', result: 'Win' },
+            // Add more games as necessary
+        ];
+
+        function displaySchedule() {
+            const tbody = document.getElementById('seasonResults');
+
+            games.forEach(game => {
+                const row = document.createElement('tr');
+                
+                // Create the table cells
+                const weekCell = document.createElement('td');
+                const dateCell = document.createElement('td');
+                const opponentCell = document.createElement('td');
+                const resultCell = document.createElement('td');
+                
+                // Assign values to the table cells
+                weekCell.textContent = game.week;
+                dateCell.textContent = game.date;
+                opponentCell.textContent = game.opponent;
+                resultCell.textContent = game.result;
+                
+                // Add class based on win/loss
+                resultCell.className = game.result.toLowerCase();
+
+                // Append the cells to the row
+                row.appendChild(weekCell);
+                row.appendChild(dateCell);
+                row.appendChild(opponentCell);
+                row.appendChild(resultCell);
+
+                // Append the row to the table body
+                tbody.appendChild(row);
+            });
+        }
+
+        // Call the function to display the schedule
+        displaySchedule();
+    </script>
+
+</body>
+</html>
+
