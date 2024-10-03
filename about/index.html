@@ -1,12 +1,86 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Page Title</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot Example</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
+    <div id="chat-container">
+        <div id="chat-display"></div>
+        <input type="text" id="user-input" placeholder="Type your message...">
+        <button onclick="sendMessage()">Send</button>
+    </div>
 
-<h1>this is about me</h1>
-<p>my names is kingston everyone calls me king and im 14 years old i love sports, video games and comperter programing </p>
+    <script>
+        // Function to send user message to Dialogflow and get response
+        function sendMessage() {
+            var userInput = $('#user-input').val();
+            $('#chat-display').append('<div>User: ' + userInput + '</div>');
 
+            // Send user message to Dialogflow
+            $.ajax({
+                type: 'POST',
+                url: 'https://api.dialogflow.com/v1/query?v=20150910',
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                headers: {
+                    'Authorization': 'Bearer YOUR_DIALOGFLOW_ACCESS_TOKEN'
+                },
+                data: JSON.stringify({ query: userInput, lang: 'en', sessionId: '123456' }),
+                success: function(response) {
+                    var botResponse = response.result.fulfillment.speech;
+                    $('#chat-display').append('<div>Bot: ' + botResponse + '</div>');
+                }
+            });
+
+            // Clear user input
+            $('#user-input').val('');
+        }
+    </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot Example</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <div id="chat-container">
+        <div id="chat-display"></div>
+        <input type="text" id="user-input" placeholder="Type your message...">
+        <button onclick="sendMessage()">Send</button>
+    </div>
+
+    <script>
+        // Function to send user message to Dialogflow and get response
+        function sendMessage() {
+            var userInput = $('#user-input').val();
+            $('#chat-display').append('<div>User: ' + userInput + '</div>');
+
+            // Send user message to Dialogflow
+            $.ajax({
+                type: 'POST',
+                url: 'https://api.dialogflow.com/v1/query?v=20150910',
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                headers: {
+                    'Authorization': 'Bearer YOUR_DIALOGFLOW_ACCESS_TOKEN'
+                },
+                data: JSON.stringify({ query: userInput, lang: 'en', sessionId: '123456' }),
+                success: function(response) {
+                    var botResponse = response.result.fulfillment.speech;
+                    $('#chat-display').append('<div>Bot: ' + botResponse + '</div>');
+                }
+            });
+
+            // Clear user input
+            $('#user-input').val('');
+        }
+    </script>
 </body>
 </html>
